@@ -3,7 +3,7 @@ import './globals.css';
 
 export const metadata: Metadata = {
     title: 'Book My Show Clone',
-    description: 'A project for the assignment assigned for the internship',
+    description: 'A project for the assignment assigned for the internship!',
 };
 
 interface RootLayoutProps {

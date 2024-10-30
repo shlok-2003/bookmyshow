@@ -1,11 +1,13 @@
 "use client"
 
 import { useRouter, useSearchParams  } from 'next/navigation'
+import { Suspense } from 'react';
 
 import Header from "@/components/header";
 import CustomCarousel from "@/components/carousel";
 import MoviesCarousel from "@/components/movies-carousel";
 import Footer from '@/components/footer';
+import { Loader2 } from 'lucide-react';
 
 export default function Home() {
     const router = useRouter();
@@ -23,9 +25,21 @@ export default function Home() {
 
     return (
         <main className="min-h-screen space-y-4 pb-16">
-            <Header onUpdateSearchParams={updateSearchParams} type={type} title={title} />
-            <CustomCarousel />
-            <MoviesCarousel type={type} title={title} />
+            <Suspense
+                fallback={
+                    <div className="h-screen flex items-center justify-center">
+                        <Loader2 className="h-10 w-10 animate-spin" />  
+                    </div>
+                }
+            >
+                <Header
+                    onUpdateSearchParams={updateSearchParams}
+                    type={type}
+                    title={title}
+                />
+                <CustomCarousel />
+                <MoviesCarousel type={type} title={title} />
+            </Suspense>
             <Footer />
         </main>
     );
